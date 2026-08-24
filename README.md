@@ -18,7 +18,7 @@ The extension supports Azure DevOps cloud URLs under `https://dev.azure.com/*`. 
 
 ### From a GitHub Release (recommended)
 
-1. Download `azure-boards-modernizer-<version>.zip` from the repository's **Releases** page and extract it.
+1. Download `dist.zip` from the repository root (or `azure-boards-modernizer-<version>.zip` from a GitHub Release when available) and extract it.
 2. Open `chrome://extensions`, enable **Developer mode**, select **Load unpacked**, and choose the extracted folder (the folder containing `manifest.json`).
 3. Visit an Azure Boards board, backlog, or sprint. Use the extension toolbar button to select theme, density, or turn the modernizer off for `dev.azure.com`.
 
