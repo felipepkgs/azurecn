@@ -16,10 +16,17 @@ The extension supports Azure DevOps cloud URLs under `https://dev.azure.com/*`. 
 
 ## Install locally
 
-1. Install Node.js 20 or newer.
-2. Clone this repository, then run `npm install` and `npm run build`.
-3. Open `chrome://extensions`, enable **Developer mode**, select **Load unpacked**, and choose this repository’s `dist` folder.
-4. Visit an Azure Boards board, backlog, or sprint. Use the extension toolbar button to select theme, density, or turn the modernizer off for `dev.azure.com`.
+### From a GitHub Release (recommended)
+
+1. Download `azure-boards-modernizer-<version>.zip` from the repository's **Releases** page and extract it.
+2. Open `chrome://extensions`, enable **Developer mode**, select **Load unpacked**, and choose the extracted folder (the folder containing `manifest.json`).
+3. Visit an Azure Boards board, backlog, or sprint. Use the extension toolbar button to select theme, density, or turn the modernizer off for `dev.azure.com`.
+
+### From source
+
+Install Node.js 20 or newer, clone this repository, run `npm install` and `npm run build`, then load the generated `dist` folder using the steps above.
+
+Creating and pushing a version tag such as `v0.1.0` publishes the ZIP as a GitHub Release automatically. The same ZIP is also a suitable starting package for Chrome Web Store submission, subject to its listing and policy requirements.
 
 Run `npm run check`, `npm test`, and `npm run build` before opening a pull request.
 

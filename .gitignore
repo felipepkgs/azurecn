@@ -1,4 +1,5 @@
 node_modules/
 dist/
 coverage/
+azure-boards-modernizer-*.zip
 .DS_Store
