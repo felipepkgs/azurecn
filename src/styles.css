@@ -1,0 +1,142 @@
+/* All page changes are gated by data-abm-active, so non-Boards Azure DevOps pages remain native. */
+html[data-abm-active] {
+  --abm-bg: #fafafa;
+  --abm-surface: #ffffff;
+  --abm-surface-muted: #f4f4f5;
+  --abm-text: #18181b;
+  --abm-muted: #71717a;
+  --abm-border: #e4e4e7;
+  --abm-focus: #2563eb;
+  --abm-radius: 10px;
+  --abm-radius-sm: 7px;
+  --abm-shadow: 0 1px 2px rgb(24 24 27 / 0.05), 0 1px 3px rgb(24 24 27 / 0.08);
+}
+
+html[data-abm-active][data-abm-theme="dark"] {
+  --abm-bg: #18181b;
+  --abm-surface: #27272a;
+  --abm-surface-muted: #3f3f46;
+  --abm-text: #fafafa;
+  --abm-muted: #a1a1aa;
+  --abm-border: #52525b;
+  --abm-focus: #60a5fa;
+  --abm-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-abm-active][data-abm-theme="system"] {
+    --abm-bg: #18181b;
+    --abm-surface: #27272a;
+    --abm-surface-muted: #3f3f46;
+    --abm-text: #fafafa;
+    --abm-muted: #a1a1aa;
+    --abm-border: #52525b;
+    --abm-focus: #60a5fa;
+    --abm-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+  }
+}
+
+/* Application chrome, headings, tabs, controls, menus, and panels. */
+html[data-abm-active] body,
+html[data-abm-active] .bolt-page,
+html[data-abm-active] .hub-view {
+  background: var(--abm-bg);
+  color: var(--abm-text);
+}
+
+html[data-abm-active] .bolt-header,
+html[data-abm-active] .hub-title,
+html[data-abm-active] .hub-title .hub-title-text {
+  color: var(--abm-text);
+  letter-spacing: -0.018em;
+}
+
+html[data-abm-active] .bolt-button,
+html[data-abm-active] .bolt-textfield,
+html[data-abm-active] .bolt-dropdown,
+html[data-abm-active] .bolt-menu,
+html[data-abm-active] .bolt-panel,
+html[data-abm-active] .bolt-dialog,
+html[data-abm-active] .bolt-callout-content {
+  border-color: var(--abm-border);
+  border-radius: var(--abm-radius-sm);
+}
+
+html[data-abm-active] .bolt-button:not(.primary),
+html[data-abm-active] .bolt-textfield,
+html[data-abm-active] .bolt-dropdown {
+  background: var(--abm-surface);
+  color: var(--abm-text);
+}
+
+html[data-abm-active] .bolt-button:hover:not(:disabled),
+html[data-abm-active] .bolt-tab:hover {
+  background: var(--abm-surface-muted);
+}
+
+html[data-abm-active] .bolt-button:focus-visible,
+html[data-abm-active] input:focus-visible,
+html[data-abm-active] button:focus-visible,
+html[data-abm-active] [tabindex]:focus-visible {
+  outline: 2px solid var(--abm-focus) !important;
+  outline-offset: 2px;
+}
+
+html[data-abm-active] .bolt-tab[selected="true"],
+html[data-abm-active] .bolt-tab[aria-selected="true"] {
+  color: var(--abm-text);
+  font-weight: 600;
+}
+
+html[data-abm-active] .bolt-menu,
+html[data-abm-active] .bolt-panel,
+html[data-abm-active] .bolt-dialog,
+html[data-abm-active] .bolt-callout-content {
+  background: var(--abm-surface);
+  box-shadow: var(--abm-shadow);
+}
+
+/* Kanban boards, work-item cards, backlogs, sprints, and common work-item rows. */
+html[data-abm-active] .kanban-board-column,
+html[data-abm-active] .kanban-column,
+html[data-abm-active] .backlog-container,
+html[data-abm-active] .backlog-grid,
+html[data-abm-active] .sprint-view {
+  background: var(--abm-surface-muted);
+  border: 1px solid var(--abm-border);
+  border-radius: var(--abm-radius);
+}
+
+html[data-abm-active] .kanban-card,
+html[data-abm-active] .work-item-card,
+html[data-abm-active] .board-card,
+html[data-abm-active] .grid-row {
+  background: var(--abm-surface);
+  border-color: var(--abm-border);
+  border-radius: var(--abm-radius-sm);
+  box-shadow: 0 1px 1px rgb(24 24 27 / 0.03);
+}
+
+html[data-abm-active] .kanban-card:hover,
+html[data-abm-active] .work-item-card:hover,
+html[data-abm-active] .board-card:hover {
+  box-shadow: var(--abm-shadow);
+}
+
+html[data-abm-active] .work-item-form,
+html[data-abm-active] .work-item-form-content {
+  background: var(--abm-bg);
+}
+
+/* Preserve Azure work-item type/status colors; this extension never overrides their accent rules. */
+
+html[data-abm-active][data-abm-density="compact"] .kanban-card,
+html[data-abm-active][data-abm-density="compact"] .work-item-card,
+html[data-abm-active][data-abm-density="compact"] .board-card {
+  min-height: unset;
+  padding-block: 5px;
+}
+
+html[data-abm-active][data-abm-density="compact"] .grid-row {
+  min-height: 30px;
+}

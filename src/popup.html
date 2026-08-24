@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Azure Boards Modernizer</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Azure Boards</p>
+        <h1>Modernizer</h1>
+        <p class="subtitle" id="site-name">Loading current site…</p>
+      </header>
+      <label class="switch-row" for="enabled">
+        <span><strong>Modernize this site</strong><small>Only applies to Boards pages</small></span>
+        <input id="enabled" type="checkbox" role="switch" />
+      </label>
+      <fieldset>
+        <legend>Theme</legend>
+        <div class="segmented" id="theme-options">
+          <button type="button" data-theme="system">System</button>
+          <button type="button" data-theme="light">Light</button>
+          <button type="button" data-theme="dark">Dark</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Density</legend>
+        <div class="segmented" id="density-options">
+          <button type="button" data-density="comfortable">Comfortable</button>
+          <button type="button" data-density="compact">Compact</button>
+        </div>
+      </fieldset>
+      <p class="privacy">No Azure data is read, sent, or changed.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
