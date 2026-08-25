@@ -2,23 +2,31 @@
 
 A local-first Chrome extension that gives Azure Boards a quieter, shadcn-inspired interface. It changes presentation only: it never calls Azure APIs, reads work-item data, or sends data anywhere.
 
-## What v0.1 supports
+## What it modernizes
 
 | View | Support |
 | --- | --- |
-| Boards hub, Kanban boards | Visual refresh and density |
-| Backlogs | Visual refresh and density |
-| Sprints | Visual refresh and density |
+| Boards hub, Kanban boards | Visual refresh, density, and native-accent work-item cards |
+| Backlogs | Visual refresh and density; grid rows retain Azure’s native treatment |
+| Sprints | Visual refresh, density, and native-accent work-item cards |
 | Shared Boards menus and dialogs | Visual refresh |
 | Work-item forms, Queries, Delivery Plans | Native appearance; planned later |
 
 The extension supports Azure DevOps cloud URLs under `https://dev.azure.com/*`. It intentionally leaves Repos, Pipelines, project settings, and non-Boards URLs unchanged.
 
+## Interface details
+
+- Tabs and ordinary Board actions stay transparent at rest. Inactive tabs use muted text, while the active tab uses stronger text and a thin underline.
+- Hover and keyboard-focus feedback remain visible without adding a permanent filled control surface. Azure primary and destructive actions keep their semantic styling.
+- Tab bars, command toolbars, and page action rows share comfortable vertical spacing that becomes tighter in compact density mode. Work-item form field spacing is unchanged.
+- Kanban, Board, and work-item cards receive a complete 1px border using their existing Azure work-item-type accent. When Azure does not expose an accent, the border uses the neutral theme border instead.
+- Card accents are refreshed as Azure DevOps replaces Board content during single-page navigation, without changing card content, status, or drag-and-drop behavior.
+
 ## Install locally
 
 ### From a GitHub Release (recommended)
 
-1. Download `dist.zip` from the repository root (or `azure-boards-modernizer-<version>.zip` from a GitHub Release when available) and extract it.
+1. Download the `azure-boards-modernizer-<version>.zip` asset from the latest GitHub Release and extract it. The repository also contains `dist.zip` for local use.
 2. Open `chrome://extensions`, enable **Developer mode**, select **Load unpacked**, and choose the extracted folder (the folder containing `manifest.json`).
 3. Visit an Azure Boards board, backlog, or sprint. Use the extension toolbar button to select theme, density, or turn the modernizer off for `dev.azure.com`.
 
