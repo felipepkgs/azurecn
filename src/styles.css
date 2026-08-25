@@ -10,6 +10,7 @@ html[data-abm-active] {
   --abm-radius: 10px;
   --abm-radius-sm: 7px;
   --abm-shadow: 0 1px 2px rgb(24 24 27 / 0.05), 0 1px 3px rgb(24 24 27 / 0.08);
+  --abm-row-space: 16px;
   --abm-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -75,10 +76,11 @@ html[data-abm-active] .bolt-callout-content {
   border-radius: var(--abm-radius-sm);
 }
 
-html[data-abm-active] .bolt-button:not(.primary),
+html[data-abm-active] .bolt-button:not(.primary):not(.bolt-primary-button):not(.danger):not(.destructive):not([data-is-primary="true"]):not([data-is-danger="true"]),
+html[data-abm-active] [role="toolbar"] > button:not(.primary):not(.bolt-primary-button):not(.danger):not(.destructive):not([data-is-primary="true"]):not([data-is-danger="true"]),
 html[data-abm-active] .bolt-textfield,
 html[data-abm-active] .bolt-dropdown {
-  background: var(--abm-surface);
+  background: transparent;
   color: var(--abm-text);
 }
 
@@ -132,41 +134,50 @@ html[data-abm-active] [tabindex]:focus-visible {
   outline-offset: 2px;
 }
 
-/* Replace the native Metro underline with a compact segmented tab treatment. */
+/* Keep Boards navigation flat; the active state is text weight plus an underline. */
 html[data-abm-active] [role="tablist"],
 html[data-abm-active] .bolt-tabbar {
   align-items: center;
-  background: var(--abm-surface-muted);
-  border: 1px solid var(--abm-border);
-  border-bottom: 1px solid var(--abm-border) !important;
-  border-radius: var(--abm-radius-sm);
-  display: inline-flex;
-  gap: 2px;
+  background: transparent;
+  border: 0 !important;
+  border-radius: 0;
+  display: flex;
+  gap: 0;
   max-inline-size: 100%;
-  padding: 3px;
-  width: fit-content;
+  padding: 0;
+  width: auto;
 }
 
 html[data-abm-active] [role="tablist"] .bolt-tab,
 html[data-abm-active] .bolt-tabbar .bolt-tab,
 html[data-abm-active] [role="tab"] {
   border: 0 !important;
-  border-radius: 5px;
+  border-radius: 0;
+  background: transparent;
   color: var(--abm-muted);
   min-block-size: 28px;
   padding: 5px 10px;
+  position: relative;
 }
 
 html[data-abm-active] [role="tablist"] .bolt-tab::after,
 html[data-abm-active] .bolt-tabbar .bolt-tab::after,
 html[data-abm-active] [role="tab"]::after {
-  display: none !important;
+  background: var(--abm-focus);
+  block-size: 2px;
+  bottom: 0;
+  content: "";
+  display: block !important;
+  inline-size: calc(100% - 20px);
+  inset-inline-start: 10px;
+  opacity: 0;
+  position: absolute;
 }
 
 html[data-abm-active] [role="tablist"] .bolt-tab:hover,
 html[data-abm-active] .bolt-tabbar .bolt-tab:hover,
 html[data-abm-active] [role="tab"]:hover {
-  background: color-mix(in srgb, var(--abm-surface) 70%, transparent);
+  background: transparent;
   color: var(--abm-text);
 }
 
@@ -175,10 +186,31 @@ html[data-abm-active] [role="tablist"] .bolt-tab[aria-selected="true"],
 html[data-abm-active] .bolt-tabbar .bolt-tab[selected="true"],
 html[data-abm-active] .bolt-tabbar .bolt-tab[aria-selected="true"],
 html[data-abm-active] [role="tab"][aria-selected="true"] {
-  background: var(--abm-surface);
-  box-shadow: 0 1px 2px rgb(24 24 27 / 0.1);
+  background: transparent;
+  box-shadow: none;
   color: var(--abm-text);
   font-weight: 600;
+}
+
+html[data-abm-active] [role="tablist"] .bolt-tab[selected="true"]::after,
+html[data-abm-active] [role="tablist"] .bolt-tab[aria-selected="true"]::after,
+html[data-abm-active] .bolt-tabbar .bolt-tab[selected="true"]::after,
+html[data-abm-active] .bolt-tabbar .bolt-tab[aria-selected="true"]::after,
+html[data-abm-active] [role="tab"][aria-selected="true"]::after {
+  opacity: 1;
+}
+
+/* Repeated structural rows use one rhythm without affecting work-item form fields. */
+html[data-abm-active] [role="tablist"],
+html[data-abm-active] .bolt-tabbar,
+html[data-abm-active] [role="toolbar"],
+html[data-abm-active] .bolt-commandbar,
+html[data-abm-active] .bolt-command-bar,
+html[data-abm-active] .hub-title,
+html[data-abm-active] .page-title,
+html[data-abm-active] .page-header,
+html[data-abm-active] .page-actions {
+  margin-block-end: var(--abm-row-space);
 }
 
 html[data-abm-active] .bolt-menu,
@@ -202,10 +234,9 @@ html[data-abm-active] .sprint-view {
 
 html[data-abm-active] .kanban-card,
 html[data-abm-active] .work-item-card,
-html[data-abm-active] .board-card,
-html[data-abm-active] .grid-row {
+html[data-abm-active] .board-card {
   background: var(--abm-surface);
-  border-color: var(--abm-border);
+  border: 1px solid var(--abm-card-accent, var(--abm-border));
   border-radius: var(--abm-radius-sm);
   box-shadow: 0 1px 1px rgb(24 24 27 / 0.03);
 }
@@ -230,6 +261,14 @@ html[data-abm-active][data-abm-density="compact"] .board-card {
   padding-block: 5px;
 }
 
-html[data-abm-active][data-abm-density="compact"] .grid-row {
-  min-height: 30px;
+html[data-abm-active][data-abm-density="compact"] [role="tablist"],
+html[data-abm-active][data-abm-density="compact"] .bolt-tabbar,
+html[data-abm-active][data-abm-density="compact"] [role="toolbar"],
+html[data-abm-active][data-abm-density="compact"] .bolt-commandbar,
+html[data-abm-active][data-abm-density="compact"] .bolt-command-bar,
+html[data-abm-active][data-abm-density="compact"] .hub-title,
+html[data-abm-active][data-abm-density="compact"] .page-title,
+html[data-abm-active][data-abm-density="compact"] .page-header,
+html[data-abm-active][data-abm-density="compact"] .page-actions {
+  margin-block-end: 10px;
 }
